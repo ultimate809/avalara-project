@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+  namespace: avalara-tests
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: green-pod
+  template:
+    metadata:
+      labels:
+        name: green-pod
+    spec:
+      containers:
+      - name: green-pod
+        image: argoproj/rollouts-demo:green
+        ports:
+        - containerPort: 8080
